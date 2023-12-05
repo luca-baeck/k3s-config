@@ -1,7 +1,8 @@
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+kind: Ingress
 metadata:
   name: dashboard-site-ingress
+  namespace: kube-system
 spec:
   entryPoints:
     - web
@@ -9,8 +10,8 @@ spec:
   - match: PathPrefix(`/dashboard`)
     kind: Rule
     services:
-    - name: dashboard-site-service
-      port: 80
+    - name: kubernetes-dashboard
+      port: 443
     middlewares:
       - name: dashboard-stripprefix
 ---
