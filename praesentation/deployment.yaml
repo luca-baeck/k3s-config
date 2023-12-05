@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: praesentation-site
+  labels:
+    app: praesentation-site
+spec:
+  nodeName: worker-k3s
+  selector:
+    matchLabels:
+      app: praesentation-site
+  template:
+    metadata:
+      labels:
+        app: praesentation-site
+    spec:
+      containers:
+      - name: demo
+        image: luca2005/praesentation
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "1"
+        limits:
+            cpu: "1"

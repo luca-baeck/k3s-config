@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: praesentation-site-ingress
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: PathPrefix(`/praesentation`)
+    kind: Rule
+    services:
+    - name: praesentation-site-service
+      port: 80
+    middlewares:
+      - name: praesentation-stripprefix
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: praesentation-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /praesentation
