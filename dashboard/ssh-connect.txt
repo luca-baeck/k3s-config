@@ -1,0 +1,5 @@
+cd /Users/i589857/.ssh
+
+ssh -i google_vm -L 8001:127.0.0.1:8001 luca_baeck@34.159.217.76
+
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
