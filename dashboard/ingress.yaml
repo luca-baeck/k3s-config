@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-site-ingress
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: PathPrefix(`/dashboard`)
+    kind: Rule
+    services:
+    - name: dashboard-site-service
+      port: 80
+    middlewares:
+      - name: dashboard-stripprefix
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: dashboard-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /dashboard
