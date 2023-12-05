@@ -1,0 +1,29 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: demo-site-ingress
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Path(`/`)
+    kind: Rule
+    services:
+    - name: demo-site-service
+      port: 80
+  - match: PathPrefix(`/demo`)
+    kind: Rule
+    services:
+    - name: demo-site-service
+      port: 80
+    middlewares:
+      - name: demo-stripprefix
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: demo-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /demo

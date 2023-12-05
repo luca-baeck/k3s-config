@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-site
+  labels:
+    app: demo-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-site
+  template:
+    metadata:
+      labels:
+        app: demo-site
+    spec:
+      containers:
+      - name: demo
+        image: johannes33/express_container_test_2:latest
+        ports:
+        - containerPort: 80
