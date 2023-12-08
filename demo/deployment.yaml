@@ -18,3 +18,8 @@ spec:
         image: johannes33/express_container_test_2:latest
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: "1"
+        limits:
+            cpu: "1"
