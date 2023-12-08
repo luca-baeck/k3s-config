@@ -4,6 +4,7 @@ metadata:
   name: demo-site-hpa
 spec:
   minReplicas: 1
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
