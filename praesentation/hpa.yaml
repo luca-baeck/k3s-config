@@ -2,7 +2,6 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: praesentation-site-hpa
-  namespace: apache
 spec:
   maxReplicas: 1
   metrics:

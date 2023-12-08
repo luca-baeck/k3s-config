@@ -7,5 +7,5 @@ sudo kubectl label node worker-k3s node-role.kubernetes.io/worker=worker
 
 Agent:
 curl -sfL https://get.k3s.io | sh -s
-k3s-killall.sh
+sudo k3s-killall.sh
 sudo k3s agent --server https://10.156.0.14:6443 --token K1040a6b5b31fad432fcda6766623ee26e87829b01d1256d7be1576154c2342a9f3::server:bf3ccfe238d6f26ba891624384edaa09
