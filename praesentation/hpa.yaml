@@ -4,7 +4,7 @@ metadata:
   name: praesentation-site-hpa
   namespace: apache
 spec:
-  maxReplicas: 4
+  maxReplicas: 1
   metrics:
   - type: Resource
     resource:
@@ -18,7 +18,6 @@ spec:
       target:
         averageUtilization: 75
         type: Utilization
-  minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
