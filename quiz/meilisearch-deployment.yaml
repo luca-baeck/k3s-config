@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meilisearch
+  name: meilisearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: meilisearch
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.31.2 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/deploymenst-default: "true"
+        io.kompose.service: meilisearch
+    spec:
+      containers:
+        - env:
+            - name: MEILI_NO_ANALYTICS
+              value: "true"
+          image: getmeili/meilisearch:v0.28.0
+          name: meilisearch
+          resources: {}
+          volumeMounts:
+            - mountPath: /data.ms
+              name: meilisearch-data
+      restartPolicy: Always
+      volumes:
+        - name: meilisearch-data
+          persistentVolumeClaim:
+            claimName: meilisearch-data
+status: {}

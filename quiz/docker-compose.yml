@@ -1,0 +1,87 @@
+# SPDX-FileCopyrightText: 2023 Marlon W (Mawoka)
+#
+# SPDX-License-Identifier: MPL-2.0
+
+version: "3"
+
+services:
+  frontend:
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+      - api
+    environment:
+      REDIS_URL: redis://redis:6379/0?decode_responses=True
+      API_URL: http://api:80
+  api:
+    build: &build_cfg
+      context: .
+      dockerfile: Dockerfile
+    restart: &restart always
+    depends_on: &depends
+      - db
+      - redis
+
+    environment: &env_vars
+      DB_URL: "postgresql://postgres:classquiz@db:5432/classquiz"
+      REDIS: "redis://redis:6379/0?decode_responses=True"
+      MAIL_ADDRESS: "johannes.kling@outlook.de"
+      MAIL_PASSWORD: "Vincent13!"
+      MAIL_USERNAME: "johannes.kling@outlook.de"
+      MAIL_SERVER: "smtp-mail.outlook.com"
+      MAX_WORKERS: "1" # Very important
+      MAIL_PORT: "587"
+      SECRET_KEY: "dbd136307d9c032e582574a33b2c2594144dc0e38194349d412e182f77292f76"
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
+      SKIP_EMAIL_VERIFICATION: True
+      HCAPTCHA_KEY: "ES_53d2071710bb40f09b2b67cb3b4bed4a"
+      MEILISEARCH_URL: "http://meilisearch:7700"
+      STORAGE_BACKEND: "local"
+      STORAGE_PATH: "/app/data"
+  redis:
+    image: redis:alpine
+    restart: always
+    healthcheck:
+      test: [ "CMD", "redis-cli","ping" ]
+
+  db:
+    image: postgres:14-alpine
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_PASSWORD: "classquiz"
+      POSTGRES_DB: "classquiz"
+    volumes:
+      - data:/var/lib/postgresql/data
+  proxy:
+    image: caddy:alpine
+    restart: always
+    volumes:
+      - ./Caddyfile-docker:/etc/caddy/Caddyfile
+    ports:
+      - "8000:8080"
+  meilisearch:
+    image: getmeili/meilisearch:v0.28.0
+    restart: always
+    environment:
+      MEILI_NO_ANALYTICS: true
+    volumes:
+      - meilisearch-data:/data.ms
+  worker:
+    build: *build_cfg
+    environment: *env_vars
+    depends_on: *depends
+    restart: *restart
+    command: arq classquiz.worker.WorkerSettings
+
+
+volumes:
+  data:
+  meilisearch-data:

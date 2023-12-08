@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: api
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.31.2 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/deploymenst-default: "true"
+        io.kompose.service: api
+    spec:
+      containers:
+        - env:
+            - name: ACCESS_TOKEN_EXPIRE_MINUTES
+              value: "30"
+            - name: DB_URL
+              value: postgresql://postgres:classquiz@db:5432/classquiz
+            - name: HCAPTCHA_KEY
+              value: ES_53d2071710bb40f09b2b67cb3b4bed4a
+            - name: MAIL_ADDRESS
+              value: johannes.kling@outlook.de
+            - name: MAIL_PASSWORD
+              value: Vincent13!
+            - name: MAIL_PORT
+              value: "587"
+            - name: MAIL_SERVER
+              value: smtp-mail.outlook.com
+            - name: MAIL_USERNAME
+              value: johannes.kling@outlook.de
+            - name: MAX_WORKERS
+              value: "1"
+            - name: MEILISEARCH_URL
+              value: http://meilisearch:7700
+            - name: REDIS
+              value: redis://redis:6379/0?decode_responses=True
+            - name: SECRET_KEY
+              value: dbd136307d9c032e582574a33b2c2594144dc0e38194349d412e182f77292f76
+            - name: SKIP_EMAIL_VERIFICATION
+              value: "true"
+            - name: STORAGE_BACKEND
+              value: local
+            - name: STORAGE_PATH
+              value: /app/data
+          image: api
+          name: api
+          resources: {}
+      restartPolicy: Always
+status: {}

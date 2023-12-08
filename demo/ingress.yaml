@@ -6,11 +6,6 @@ spec:
   entryPoints:
     - web
   routes:
-  - match: Path(`/`)
-    kind: Rule
-    services:
-    - name: demo-site-service
-      port: 80
   - match: PathPrefix(`/demo`)
     kind: Rule
     services:
