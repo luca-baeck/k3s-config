@@ -60,7 +60,6 @@ spec:
             - name: STORAGE_PATH
               value: /app/data
           image: classquiz_worker
-          imagePullPolicy: Never
           name: worker
           resources: {}
       restartPolicy: Always
