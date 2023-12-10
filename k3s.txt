@@ -1,6 +1,6 @@
 Server:
 curl -sfL https://get.k3s.io | sh -s
-sudo k3s server
+sudo k3s server [--docker]
 sudo cat /var/lib/rancher/k3s/server/node-token
 sudo k3s kubectl get nodes
 sudo kubectl label node worker-k3s node-role.kubernetes.io/worker=worker
