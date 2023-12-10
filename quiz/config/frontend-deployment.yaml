@@ -30,7 +30,7 @@ spec:
               value: http://api:80
             - name: REDIS_URL
               value: redis://redis:6379/0?decode_responses=True
-          image: frontend
+          image: classquiz_frontend
           name: frontend
           resources: {}
       restartPolicy: Always

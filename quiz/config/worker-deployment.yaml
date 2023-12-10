@@ -59,7 +59,7 @@ spec:
               value: local
             - name: STORAGE_PATH
               value: /app/data
-          image: worker
+          image: classquiz_worker
           name: worker
           resources: {}
       restartPolicy: Always

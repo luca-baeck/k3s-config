@@ -56,7 +56,7 @@ spec:
               value: local
             - name: STORAGE_PATH
               value: /app/data
-          image: api
+          image: classquiz_api
           name: api
           resources: {}
       restartPolicy: Always
