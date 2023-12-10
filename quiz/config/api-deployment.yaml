@@ -57,7 +57,8 @@ spec:
             - name: STORAGE_PATH
               value: /app/data
           image: classquiz_api
-          name: api
+          name: classquiz_api
+          imagePullPolicy: Never
           resources: {}
       restartPolicy: Always
 status: {}

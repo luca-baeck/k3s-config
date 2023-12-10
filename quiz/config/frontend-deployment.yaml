@@ -31,7 +31,8 @@ spec:
             - name: REDIS_URL
               value: redis://redis:6379/0?decode_responses=True
           image: classquiz_frontend
-          name: frontend
+          name: classquiz_frontend
+          imagePullPolicy: Never
           resources: {}
       restartPolicy: Always
 status: {}
