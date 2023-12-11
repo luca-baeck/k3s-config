@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: 4gewinnt-site-ingress
+  name: vier-gewinnt-site-ingress
 spec:
   entryPoints:
     - web
@@ -9,15 +9,15 @@ spec:
   - match: PathPrefix(`/4gewinnt`)
     kind: Rule
     services:
-    - name: 4gewinnt-site-service
+    - name: vier-gewinnt-site-service
       port: 80
     middlewares:
-      - name: 4gewinnt-stripprefix
+      - name: vier-gewinnt-stripprefix
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: 4gewinnt-stripprefix
+  name: vier-gewinnt-stripprefix
 spec:
   stripPrefix:
     prefixes:

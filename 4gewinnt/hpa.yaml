@@ -21,4 +21,4 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: 4gewinnt-site
+    name: vier-gewinnt-site

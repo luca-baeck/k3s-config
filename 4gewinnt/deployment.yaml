@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 4gewinnt-site
+  name: vier-gewinnt-site
   labels:
-    app: 4gewinnt-site
+    app: vier-gewinnt-site
 spec:
   selector:
     matchLabels:
-      app: 4gewinnt-site
+      app: vier-gewinnt-site
   template:
     metadata:
       labels:
-        app: 4gewinnt-site
+        app: vier-gewinnt-site
     spec:
       containers:
-      - name: 4gewinnt
-        image: johannes33/express_container_test_2:latest
+      - name: vier-gewinnt
+        image: johannes33/4-gewinnt:latest
         ports:
         - containerPort: 80
         resources:

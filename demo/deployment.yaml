@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: johannes33/4-gewinnt:latest
+        image: johannes33/express_container_test_2:latest
         ports:
         - containerPort: 80
         resources:
