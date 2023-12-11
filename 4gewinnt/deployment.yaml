@@ -18,8 +18,3 @@ spec:
         image: johannes33/4-gewinnt:latest
         ports:
         - containerPort: 3000
-        resources:
-          requests:
-            cpu: "1"
-          limits:
-            cpu: "1"
