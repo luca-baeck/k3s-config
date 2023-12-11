@@ -19,6 +19,8 @@ kind: Middleware
 metadata:
   name: vier-gewinnt-stripprefix
 spec:
+  contentType:
+    autoDetect: false
   stripPrefix:
     prefixes:
       - /4gewinnt

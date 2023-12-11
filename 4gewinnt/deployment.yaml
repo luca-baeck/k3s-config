@@ -13,8 +13,6 @@ spec:
       labels:
         app: vier-gewinnt-site
     spec:
-      contentType:
-        autoDetect: false
       containers:
       - name: vier-gewinnt
         image: johannes33/4-gewinnt:latest
