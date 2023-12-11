@@ -18,10 +18,10 @@ spec:
         image: johannes33/4-gewinnt:latest
         ports:
         - containerPort: 3000
-      hard:
-        limits.cpu: "2"
-        limits.memory: 8Gi
-        limits.ephemeral-storage: 2Gi
-        requests.cpu: "1"
-        requests.memory: 4Gi
-        requests.ephemeral-storage: 1Gi
+        ressources:
+          limits.cpu: "2"
+          limits.memory: 8Gi
+          limits.ephemeral-storage: 2Gi
+          requests.cpu: "1"
+          requests.memory: 4Gi
+          requests.ephemeral-storage: 1Gi
