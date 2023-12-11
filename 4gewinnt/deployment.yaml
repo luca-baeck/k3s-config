@@ -18,3 +18,8 @@ spec:
         image: johannes33/4-gewinnt:latest
         ports:
         - containerPort: 3000
+        resources:
+          requests:
+            ephemeral-storage: "2Gi"
+          limits:
+            ephemeral-storage: "4Gi"
