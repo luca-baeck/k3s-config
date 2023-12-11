@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: 4gewinnt-site-service
+spec:
+  selector:
+    app: 4gewinnt-site
+  ports:
+    - protocol: TCP
+      port: 80
