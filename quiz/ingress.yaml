@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: quiz-site-ingress
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: PathPrefix(`/quiz`)
+    kind: Rule
+    services:
+    - name: quiz-site-service
+      port: 80
+    middlewares:
+      - name: quiz-stripprefix
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: quiz-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /quiz

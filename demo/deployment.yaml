@@ -17,10 +17,10 @@ spec:
       containers:
       - name: demo
         image: johannes33/express_container_test_2:latest
+        resources:
+          limits:
+            cpu: 300m
+          requests:
+            cpu: 100m
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: "1"
-        limits:
-            cpu: "1"

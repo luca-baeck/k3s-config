@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vier-gewinnt-site
+  name: quiz-site
   labels:
-    app: vier-gewinnt-site
+    app: quiz-site
 spec:
   nodeName: worker-k3s
   selector:
     matchLabels:
-      app: vier-gewinnt-site
+      app: quiz-site
   template:
     metadata:
       labels:
-        app: vier-gewinnt-site
+        app: quiz-site
     spec:
       containers:
-      - name: vier-gewinnt
-        image: johannes33/4-gewinnt:latest
+      - name: quiz
+        image: johannes33/express_container_test_2:latest
+        ports:
+        - containerPort: 80
         resources:
           limits:
             cpu: 300m
           requests:
             cpu: 100m
-        ports:
-        - containerPort: 3000
