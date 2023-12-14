@@ -4,8 +4,6 @@ metadata:
   name: demo-site
   labels:
     app: demo-site
-spec:
-  nodeName: worker-k3s
   selector:
     matchLabels:
       app: demo-site
@@ -14,6 +12,7 @@ spec:
       labels:
         app: demo-site
     spec:
+      nodeName: worker-k3s
       containers:
       - name: demo
         image: johannes33/express_container_test_2:latest
