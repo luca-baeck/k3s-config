@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: quiz
-        image: johannes33/express_container_test_2:latest
+        image: johannes33/quiz:latest
         ports:
         - containerPort: 80
         resources:
