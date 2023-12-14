@@ -4,6 +4,8 @@ metadata:
   name: quiz-site
   labels:
     app: quiz-site
+spec:
+  nodeName: worker-k3s
   selector:
     matchLabels:
       app: quiz-site
@@ -12,7 +14,6 @@ metadata:
       labels:
         app: quiz-site
     spec:
-      nodeName: worker-k3s
       containers:
       - name: quiz
         image: johannes33/quiz:latest
