@@ -5,7 +5,6 @@ metadata:
   labels:
     app: praesentation-site
 spec:
-  nodeName: worker-k3s
   selector:
     matchLabels:
       app: praesentation-site
@@ -14,6 +13,7 @@ spec:
       labels:
         app: praesentation-site
     spec:
+      nodeName: worker-k3s
       containers:
       - name: demo
         image: luca2005/praesentation
