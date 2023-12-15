@@ -16,7 +16,7 @@ spec:
       nodeName: worker-k3s
       containers:
       - name: quiz
-        image: johannes33/quiz:latest
+        image: luca2005/quiz:latest
         ports:
         - containerPort: 80
         resources:
