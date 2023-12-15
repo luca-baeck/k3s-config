@@ -1,0 +1,7 @@
+cd /Users/i589857/.ssh
+
+//für master-k3s
+ssh -i google_vm -L 8001:127.0.0.1:8001 luca_baeck@34.159.217.76
+
+//für worker-k3s
+ssh -i google_vm luca_baeck@34.107.45.177
